@@ -11,7 +11,7 @@ from worldlabs_api_wrapper import generate_world_from_one_image
 
 
 # ====== World Labs 配置 ======
-WORLDLABS_API_KEY = "2UPzwfxx0Hdh3bV0TSb3XIK9G9XxLfAp"
+WORLDLABS_API_KEY = "MgHj6nmvMCICkgVnj35gv3jYU3tBAttU"
 IMAGE_FILE = "/Users/jan/Desktop/Picture2Picture/input_picture/room.png"
 IMAGE_URL = ""
 DISPLAY_NAME = "Simple Test World"
@@ -60,14 +60,18 @@ def main() -> None:
         print(row)
 
     except Exception as exc:
-        row = storage.insert_world_url(
-            world_url="",
-            original_image_url=original_image_url,
-            render_status="failed",
-            error_message=str(exc),
-        )
-        print("生成或写入失败，已记录到 Supabase：")
-        print(row)
+        print("World Labs 主流程失败：", exc)
+        try:
+            row = storage.insert_world_url(
+                world_url="",
+                original_image_url=original_image_url,
+                render_status="failed",
+                error_message=str(exc),
+            )
+            print("失败信息已记录到 Supabase：")
+            print(row)
+        except Exception as db_exc:
+            print("写入 Supabase 失败记录时又报错：", db_exc)
         raise
 
 

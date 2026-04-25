@@ -51,12 +51,11 @@ class SupabaseCornerStorage:
         render_status: str = "success",
         error_message: Optional[str] = None,
     ) -> Dict[str, Any]:
-        """把 world_url 写入 viewer_models，同时补上表里的必填字段。"""
+        """把 world_url 写入 word_model_url，同时补上表里的必填字段。"""
         payload = {
             "render_status": render_status,
             "original_image_url": original_image_url,
-            # 你的表里没有单独 world_url 字段，这里存进 viewer_models。
-            "viewer_models": {"world_url": world_url},
+            "word_model_url": world_url,
         }
         if error_message:
             payload["error_message"] = error_message

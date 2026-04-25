@@ -39,7 +39,7 @@ from requests.exceptions import RequestException
 
 
 DEFAULT_BASE_URL = "https://api.worldlabs.ai/marble/v1"
-DEFAULT_MODEL = "marble-1.1"
+DEFAULT_MODEL = "marble-1.0-draft"
 
 
 class WorldLabsError(RuntimeError):
@@ -420,7 +420,7 @@ def parse_args() -> argparse.Namespace:
 
     parser.add_argument("--api-key", default=None, help="World Labs API key (or use WLT_API_KEY)")
     parser.add_argument("--display-name", default="Generated World", help="World display name")
-    parser.add_argument("--model", default=DEFAULT_MODEL, help="Model name, default marble-1.1")
+    parser.add_argument("--model", default=DEFAULT_MODEL, help="Model name, default marble-1.0-draft")
     parser.add_argument("--text-prompt", default=None, help="Optional extra text prompt")
     parser.add_argument("--timeout", type=int, default=600, help="Max wait time in seconds")
     parser.add_argument("--poll-interval", type=int, default=5, help="Polling interval in seconds")

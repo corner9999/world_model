@@ -42,25 +42,17 @@ Supabase 表名：
 corner_projects
 ```
 
-由于这张表里没有单独的 `world_url` 字段，目前脚本把世界模型链接写进：
+当前脚本把世界模型链接写进：
 
 ```text
-viewer_models
-```
-
-存进去的内容结构是：
-
-```json
-{
-  "world_url": "https://marble.worldlabs.ai/world/xxx"
-}
+word_model_url
 ```
 
 同时还会补最少的必填字段：
 
 - `render_status`
 - `original_image_url`
-- `viewer_models`
+- `word_model_url`
 
 如果生成失败，也会插入一条失败记录，并把错误写进：
 
@@ -94,6 +86,12 @@ result = generate_world_from_one_image(
     verbose=True,
     use_env_proxy=False,
 )
+```
+
+当前默认模型是：
+
+```text
+marble-1.0-draft
 ```
 
 返回值结构：
